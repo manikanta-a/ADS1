@@ -64,8 +64,12 @@ class Percolation{
 				// System.out.println("for "+((size*(row-1))+col-1)+" "+(size*row+col-1));
 			}
 
-			if(row-1 == 0 || row-1 == size-1){
+			if(row-1 == 0){
 				uf.union(gridSize, size*(row-1)+col-1);
+			}
+
+			if(row-1 == size-1){
+				uf.union(gridSize+1, size*(row-1)+col-1);	
 			}
 
 		}
