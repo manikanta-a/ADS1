@@ -21,6 +21,17 @@ class Percolation{
 		uf =new WeightedQuickUnionUF(gridSize+2);
 		arr = new boolean[size][size];
 		numOfOpenSite = 0;
+		for(int i = 0;i<size; i++){
+			uf.union(gridSize, i);
+			uf.union(gridSize+1, size*(size-1)+i);
+		}
+
+		// for(int i = 0;i<size; i++){
+		// 	System.out.println(Arrays.toString(arr[i]));
+		// }
+
+		// System.out.println(Arrays.toString(uf.getArray()));
+		// System.out.println(Arrays.toString(uf.getSize()));
 	}
 
 	public void open(int row, int col){
@@ -29,23 +40,31 @@ class Percolation{
 			// System.out.println("inside open method == "+(row-1)+" - "+(col-1));
 			arr[row-1][col-1] = true;
 
-			if(col-2>=0 && isOpen(row-1, col-2)) {
-				uf.union(size*row-1+col-1, size*row-1+col-2);
+			// left
+			if(col-2 >= 0 && isOpen(row-1, col-2)) {
+				uf.union(size*(row-1)+col-1, size*(row-1)+col-2);
 			}
 
-			if(row-2>=0 && isOpen(row-2, col-1)) {
-				uf.union(size*row-1+col-1, size*row-2+col-1);
+			//top
+			if(row-2 >= 0 && isOpen(row-2, col-1)) {
+				uf.union(size*(row-1)+col-1, size*(row-2)+col-1);
 			}
 
+			//right
 			if(col < size && isOpen(row-1, col)) {
-				uf.union(size*row-1+col-1, size*row-1+col);
+				uf.union(size*(row-1)+col-1, size*(row-1)+col);
 			}
 
+			//bottom
 			if(row < size && isOpen(row, col-1)) {
-				uf.union(size*row-1+col-1, size*row+col-1);
+				uf.union(size*(row-1)+col-1, size*row+col-1);
+				// System.out.println("for "+((size*(row-1))+col-1)+" "+(size*row+col-1));
 			}
 
 		}
+
+		// System.out.println(Arrays.toString(uf.getArray()));
+		// System.out.println(Arrays.toString(uf.getSize()));
 	}
 
 	public boolean isOpen(int row, int col){ 
@@ -59,10 +78,14 @@ class Percolation{
 	}
 
 	public boolean percolates(){
-		for(int i = 0;i<size; i++){
-			uf.union(gridSize,i);
-			uf.union(gridSize+1,size*(size-1)+i);
-		}
+		
+
+		// for(int i = 0;i<size; i++){
+		// 	System.out.println(Arrays.toString(arr[i]));
+		// }
+		// System.out.println(Arrays.toString(uf.getArray()));
+		
+		// System.out.println(Arrays.toString(arr[0]));
 		return uf.connected(gridSize, gridSize+1);
 	}
 }

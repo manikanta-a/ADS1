@@ -173,6 +173,14 @@ public class WeightedQuickUnionUF {
         count--;
     }
 
+    public int[] getArray(){
+        return parent;
+    }
+
+     public int[] getSize(){
+        return size;
+    }
+
 
     /**
      * Reads in a sequence of pairs of integers (between 0 and n-1) from standard input, 
