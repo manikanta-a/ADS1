@@ -21,10 +21,13 @@ class Percolation{
 		uf =new WeightedQuickUnionUF(gridSize+2);
 		arr = new boolean[size][size];
 		numOfOpenSite = 0;
-		for(int i = 0;i<size; i++){
-			uf.union(gridSize, i);
-			uf.union(gridSize+1, size*(size-1)+i);
+		if(size>1){
+			for(int i = 0;i<size; i++){
+				uf.union(gridSize, i);
+				uf.union(gridSize+1, size*(size-1)+i);
+			}	
 		}
+		
 
 		// for(int i = 0;i<size; i++){
 		// 	System.out.println(Arrays.toString(arr[i]));
