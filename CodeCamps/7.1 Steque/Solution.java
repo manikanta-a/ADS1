@@ -42,7 +42,7 @@ class Steque{
 	public void pop() throws Exception{
 		if(size == 0){
 			// System.out.println("here");
-			throw new Exception("Steque is empty");
+			throw new Exception("Steque is empty.");
 		}
 
 		head = head.next;
@@ -66,13 +66,19 @@ class Steque{
 		return;
 	}
 
+	public void clear(){
+		head = null;
+		tail  = null;
+		size = 0;
+	}
+
 
 	public String display(){
 		// System.out.println("inside display");
 		String result = "";
 		Node curr = head;
 		if(size == 0){
-			result = "Steque is empty";
+			result = "Steque is empty.";
 			return result;
 		}
 
@@ -108,6 +114,7 @@ class Solution{
 				String input = sc.nextLine();
 				if(input.length() == 0){
 					System.out.println();
+					stq.clear();
 					break;
 				}
 				try{
