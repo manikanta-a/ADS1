@@ -48,12 +48,16 @@ class LinkedList{
 	}
 
 
-	public void reverse()
-	{
+	public void reverse() throws Exception {
+		if(head == null){
+			throw new Exception("No elements to reverse.");
+		}
 		reverse(head, null);
 	}
 
 	private Node reverse(Node curr, Node prev){
+
+
 
 		if(curr.next == null){
 			head = curr;
